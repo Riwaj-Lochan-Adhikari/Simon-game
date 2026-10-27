@@ -59,3 +59,22 @@ function playSound(name) {
  console.log(randomNumber);
   return randomNumber;
 }
+
+function animatePress(currentColour) {
+  $("#" + currentColour).addClass("pressed");
+
+  setTimeout(function () {
+    $("#" + currentColour).removeClass("pressed");
+  }, 100);
+}
+$(".btn").on("click", function () {
+  var userChosenColor = $(this).attr("id");
+  animatePress(userChosenColor);
+});
+
+$(document).one("keydown", function () {
+  nextSequence();
+});
+
+let level = 0;
+
