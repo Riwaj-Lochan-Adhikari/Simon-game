@@ -1,20 +1,39 @@
 let userClickedPattern = [];
 let gamePattern  = [];
+let buttonColours = ["red", "blue", "green", "yellow"];
+var started = false;
 
-const buttonColours = ["red", "blue", "green", "yellow"];
+let level = 0;
+$(document).keypress(function() {
+  if (!started) {
+
+    //3. The h1 title starts out saying "Press A Key to Start", when the game has started, change this to say "Level 0".
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }
+});
+
 
 function nextSequence(){
+ level++;
+  $("#level-title").text("Level " + level);
  let randomNumber = Math.floor(Math.random() * 4);
- console.log(randomNumber);
-  return randomNumber;
+
+  
+  
+ 
+  
+    
+    let randomChosenColour = buttonColours[randomNumber];
+  gamePattern.push(randomChosenColour);
+    $("#" + randomChosenColour);
+   return randomNumber;
 };
 
-let randomChosenColour = buttonColours[nextSequence()];
 
 
-  gamePattern.push(randomChosenColour);
 
-  $("#" + randomChosenColour);
   $('.btn').on('click', function () {
     $(this)
       .stop(true, true)       // clear any running animation
@@ -72,9 +91,11 @@ $(".btn").on("click", function () {
   animatePress(userChosenColor);
 });
 
-$(document).one("keydown", function () {
-  nextSequence();
+$(document).on("click", function () {
+
+  $("#level-title").text("Level " + level);
+    nextSequence();
 });
 
-let level = 0;
+
 
