@@ -19,13 +19,7 @@ function nextSequence(){
  level++;
   $("#level-title").text("Level " + level);
  let randomNumber = Math.floor(Math.random() * 4);
-
-  
-  
- 
-  
-    
-    let randomChosenColour = buttonColours[randomNumber];
+  let randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
     $("#" + randomChosenColour);
    return randomNumber;
@@ -71,6 +65,10 @@ $(".btn").on("click", function () {
   const userChosenColour = $(this).attr("id");   // "red", "blue", etc.
   console.log(userChosenColour);
    userClickedPattern.push(userChosenColour);
+   console.log(userClickedPattern + " Riwaj");
+
+   //Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
+    checkAnswer(userClickedPattern.length-1);
 });
 
 function playSound(name) {
@@ -98,4 +96,12 @@ $(document).on("click", function () {
 });
 
 
+function checkAnswer(currentLevel){
+  //3. Write an if statement inside checkAnswer() to check if the most recent user answer is the same as the game pattern. If so then log "success", otherwise log "wrong".
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+
+      console.log("success");
+  }
+ 
+};
 
