@@ -16,14 +16,16 @@ $(document).keypress(function() {
 
 
 function nextSequence(){
- level++;
+ 
+   userClickedPattern = [];
+  level++;
   $("#level-title").text("Level " + level);
- let randomNumber = Math.floor(Math.random() * 4);
+ let randomNumber = Math.floor(Math.random() * 4); // creating random number
   let randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
     $("#" + randomChosenColour);
    return randomNumber;
-};
+} // no semicolon here as internet told
 
 
 
@@ -101,7 +103,15 @@ function checkAnswer(currentLevel){
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
 
       console.log("success");
+  
+// If the user got the most recent answer right in step 3, then check that they have finished their sequence with another if statement.
+   if (userClickedPattern.length === gamePattern.length){
+     setTimeout(function () {
+     nextSequence();
+}, 1000);
+}
   }
- 
-};
-
+  else{
+    console.log("wrong");
+  }
+}
